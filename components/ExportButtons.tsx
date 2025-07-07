@@ -58,7 +58,7 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({ records, farmers }) => {
 
         const dataToExport = filteredRecords.map(rec => ({
             'Tanggal Produksi': formatDate(rec.productionDate),
-            'Nama Peternak': rec.farmerName,
+            'Nama Penampung': rec.farmerName,
             'Susu Pagi (Liter)': rec.morningYield,
             'Susu Sore (Liter)': rec.eveningYield,
             'Total Harian (Liter)': rec.morningYield + rec.eveningYield,
@@ -112,7 +112,7 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({ records, farmers }) => {
         const selectedFarmer = farmers.find(f => f.id === parseInt(selectedFarmerId, 10));
         const reportTitle = selectedFarmer 
             ? `Laporan Produksi Susu - ${selectedFarmer.name}`
-            : 'Laporan Produksi Susu (Semua Peternak)';
+            : 'Laporan Produksi Susu (Semua Penampung)';
 
         doc.setFontSize(18);
         doc.text(reportTitle, 14, 22);
@@ -127,7 +127,7 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({ records, farmers }) => {
         doc.text(`- Jumlah Catatan: ${filteredSummary.totalRecords} catatan`, 14, 58);
         doc.text(`- Rata-rata Per Catatan: ${filteredSummary.averageYield.toFixed(1)} Liter`, 14, 64);
 
-        const tableColumn = ["Tanggal", "Nama Peternak", "Pagi (L)", "Sore (L)", "Total (L)", "Pos Penampungan"];
+        const tableColumn = ["Tanggal", "Nama Penampung", "Pagi (L)", "Sore (L)", "Total (L)", "Pos Penampungan"];
         const tableRows: (string | number)[][] = [];
 
         filteredRecords.forEach(record => {
@@ -152,21 +152,21 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({ records, farmers }) => {
 
         const fileName = selectedFarmer 
             ? `laporan-susu-${selectedFarmer.name.replace(/\s+/g, '_')}.pdf`
-            : 'laporan-susu-semua-peternak.pdf';
+            : 'laporan-susu-semua-penampung.pdf';
         doc.save(fileName);
     };
 
     return (
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
              <div>
-                <label htmlFor="farmerFilter" className="sr-only">Filter Peternak</label>
+                <label htmlFor="farmerFilter" className="sr-only">Filter Penampung</label>
                 <select
                     id="farmerFilter"
                     value={selectedFarmerId}
                     onChange={(e) => setSelectedFarmerId(e.target.value)}
                     className="w-full sm:w-auto bg-slate-700 border border-slate-600 rounded-md px-3 py-2 h-full focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition"
                 >
-                    <option value="">Semua Peternak</option>
+                    <option value="">Semua Penampung</option>
                     {farmers.map(farmer => (
                         <option key={farmer.id} value={farmer.id}>{farmer.name}</option>
                     ))}
