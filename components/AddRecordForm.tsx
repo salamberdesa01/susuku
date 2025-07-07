@@ -18,7 +18,7 @@ const AddRecordForm: React.FC<AddRecordFormProps> = ({ onAddRecord, farmers, col
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!farmerId || !productionDate || !morningYield || !eveningYield) {
-      setError('Kolom peternak, tanggal, dan liter susu wajib diisi.');
+      setError('Kolom penampung, tanggal, dan liter susu wajib diisi.');
       return;
     }
     const morning = parseFloat(morningYield);
