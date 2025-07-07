@@ -18,11 +18,7 @@ const AddRecordForm: React.FC<AddRecordFormProps> = ({ onAddRecord, farmers, col
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!farmerId || !productionDate || !morningYield || !eveningYield) {
-<<<<<<< HEAD
-      setError('Kolom penampung, tanggal, dan liter susu wajib diisi.');
-=======
       setError('Kolom petugas, tanggal, dan liter susu wajib diisi.');
->>>>>>> ac7360f (Update terbaru)
       return;
     }
     const morning = parseFloat(morningYield);
@@ -50,22 +46,14 @@ const AddRecordForm: React.FC<AddRecordFormProps> = ({ onAddRecord, farmers, col
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-<<<<<<< HEAD
-        <label htmlFor="farmerId" className="block text-sm font-medium text-slate-300 mb-1">Nama Penampung</label>
-=======
         <label htmlFor="farmerId" className="block text-sm font-medium text-slate-300 mb-1">Nama Petugas</label>
->>>>>>> ac7360f (Update terbaru)
         <select
           id="farmerId"
           value={farmerId}
           onChange={(e) => setFarmerId(e.target.value)}
           className="w-full bg-slate-700 border border-slate-600 rounded-md p-2 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition"
         >
-<<<<<<< HEAD
-          <option value="" disabled>Pilih Penampung</option>
-=======
           <option value="" disabled>Pilih Petugas</option>
->>>>>>> ac7360f (Update terbaru)
           {farmers.map(farmer => (
             <option key={farmer.id} value={farmer.id}>{farmer.name}</option>
           ))}
