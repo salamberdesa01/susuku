@@ -46,14 +46,14 @@ const AddRecordForm: React.FC<AddRecordFormProps> = ({ onAddRecord, farmers, col
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label htmlFor="farmerId" className="block text-sm font-medium text-slate-300 mb-1">Nama Peternak</label>
+        <label htmlFor="farmerId" className="block text-sm font-medium text-slate-300 mb-1">Nama Penampung</label>
         <select
           id="farmerId"
           value={farmerId}
           onChange={(e) => setFarmerId(e.target.value)}
           className="w-full bg-slate-700 border border-slate-600 rounded-md p-2 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition"
         >
-          <option value="" disabled>Pilih Peternak</option>
+          <option value="" disabled>Pilih Penampung</option>
           {farmers.map(farmer => (
             <option key={farmer.id} value={farmer.id}>{farmer.name}</option>
           ))}
