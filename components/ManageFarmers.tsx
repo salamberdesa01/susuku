@@ -12,7 +12,7 @@ const ManageFarmers: React.FC<ManageFarmersProps> = ({ onAddFarmer }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!farmerName.trim()) {
-      setError('Nama peternak tidak boleh kosong.');
+      setError('Nama petugas tidak boleh kosong.');
       return;
     }
     setIsSubmitting(true);
@@ -21,7 +21,11 @@ const ManageFarmers: React.FC<ManageFarmersProps> = ({ onAddFarmer }) => {
       await onAddFarmer(farmerName.trim());
       setFarmerName('');
     } catch (err) {
+<<<<<<< HEAD
       setError('Gagal menambahkan penampung. Mungkin nama sudah ada.');
+=======
+      setError('Gagal menambahkan petugas. Mungkin nama sudah ada.');
+>>>>>>> ac7360f (Update terbaru)
       console.error(err);
     } finally {
       setIsSubmitting(false);
@@ -31,7 +35,11 @@ const ManageFarmers: React.FC<ManageFarmersProps> = ({ onAddFarmer }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
+<<<<<<< HEAD
         <label htmlFor="newFarmerName" className="block text-sm font-medium text-slate-300 mb-1">Nama Penampung Baru</label>
+=======
+        <label htmlFor="newFarmerName" className="block text-sm font-medium text-slate-300 mb-1">Nama Petugas Baru</label>
+>>>>>>> ac7360f (Update terbaru)
         <input
           id="newFarmerName"
           type="text"
@@ -48,7 +56,7 @@ const ManageFarmers: React.FC<ManageFarmersProps> = ({ onAddFarmer }) => {
         disabled={isSubmitting}
         className="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out transform hover:scale-105 disabled:bg-slate-600 disabled:cursor-not-allowed"
       >
-        {isSubmitting ? 'Menyimpan...' : 'Tambah Peternak'}
+        {isSubmitting ? 'Menyimpan...' : 'Tambah Petugas'}
       </button>
     </form>
   );

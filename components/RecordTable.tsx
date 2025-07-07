@@ -34,7 +34,7 @@ const RecordTable: React.FC<RecordTableProps> = ({ records, onDeleteRecord }) =>
         <thead className="bg-slate-700/50">
           <tr>
             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Tanggal Produksi</th>
-            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Nama Peternak</th>
+            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Nama Petugas</th>
             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Pagi (L)</th>
             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Sore (L)</th>
             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Total Harian</th>

@@ -16,7 +16,7 @@ const dbPromise = (async () => {
         // Aktifkan foreign key constraint
         db.exec("PRAGMA foreign_keys = ON;");
 
-        // Buat tabel peternak
+        // Buat tabel petugas
         const createFarmersTable = `
             CREATE TABLE IF NOT EXISTS farmers (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -34,7 +34,7 @@ const dbPromise = (async () => {
         `;
         db.run(createCollectionPostsTable);
 
-        // Buat tabel catatan dengan foreign key ke peternak dan pos penampungan
+        // Buat tabel catatan dengan foreign key ke petugas dan pos penampungan
         const createRecordsTable = `
             CREATE TABLE IF NOT EXISTS records (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -60,7 +60,7 @@ const getDb = async () => {
     return db;
 };
 
-// --- Fungsi Peternak ---
+// --- Fungsi Petugas ---
 export const getFarmers = async (): Promise<Farmer[]> => {
     const db = await getDb();
     const res = db.exec("SELECT id, name FROM farmers ORDER BY name ASC");
@@ -75,7 +75,7 @@ export const addFarmer = async (name: string): Promise<void> => {
     try {
         stmt.run([name]);
     } catch (e) {
-        console.error("Gagal menambah peternak:", e);
+        console.error("Gagal menambah petugas:", e);
         throw e;
     } finally {
         stmt.free();

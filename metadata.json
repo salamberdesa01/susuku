@@ -1,5 +1,6 @@
 {
   "name": "Aplikasi Pencatatan Susu",
-  "description": "Sebuah aplikasi web untuk mencatat dan memvisualisasikan hasil liter susu harian dari peternak. Aplikasi ini memungkinkan pengguna untuk memasukkan data hasil susu pagi dan sore, melihat ringkasan total, dan menganalisis data melalui tabel dan grafik.",
-  "requestFramePermissions": []
+  "description": "Sebuah aplikasi web untuk mencatat dan memvisualisasikan hasil liter susu harian dari petugas. Aplikasi ini memungkinkan pengguna untuk memasukkan data hasil susu pagi dan sore, melihat ringkasan total, dan menganalisis data melalui tabel dan grafik.",
+  "requestFramePermissions": [],
+  "prompt": ""
 }

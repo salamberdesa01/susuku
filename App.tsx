@@ -173,7 +173,7 @@ const App: React.FC = () => {
       </main>
 
       <footer className="text-center p-4 mt-8 text-slate-500 hidden md:block">
-        Dibuat dengan ❤️ untuk para peternak Indonesia.
+        Dibuat dengan ❤️ untuk para petugas Indonesia.
       </footer>
       
       <BottomNavigation activeView={mobileView} setActiveView={setMobileView} />
