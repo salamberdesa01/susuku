@@ -21,7 +21,7 @@ const ManageFarmers: React.FC<ManageFarmersProps> = ({ onAddFarmer }) => {
       await onAddFarmer(farmerName.trim());
       setFarmerName('');
     } catch (err) {
-      setError('Gagal menambahkan peternak. Mungkin nama sudah ada.');
+      setError('Gagal menambahkan penampung. Mungkin nama sudah ada.');
       console.error(err);
     } finally {
       setIsSubmitting(false);
@@ -31,7 +31,7 @@ const ManageFarmers: React.FC<ManageFarmersProps> = ({ onAddFarmer }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label htmlFor="newFarmerName" className="block text-sm font-medium text-slate-300 mb-1">Nama Peternak Baru</label>
+        <label htmlFor="newFarmerName" className="block text-sm font-medium text-slate-300 mb-1">Nama Penampung Baru</label>
         <input
           id="newFarmerName"
           type="text"
