@@ -32,7 +32,7 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({ records, farmers }) => {
             return records;
         }
         return records.filter(
-            (record) => record.farmerId === parseInt(selectedFarmerId, 10)
+            (record) => record.farmerId === selectedFarmerId
         );
     }, [records, selectedFarmerId]);
     
@@ -92,7 +92,7 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({ records, farmers }) => {
         });
         worksheet["!cols"] = maxWidths.map(wch => ({ wch: wch + 2 }));
         
-        const selectedFarmer = farmers.find(f => f.id === parseInt(selectedFarmerId, 10));
+        const selectedFarmer = farmers.find(f => f.id === selectedFarmerId);
         const fileName = selectedFarmer 
             ? `laporan-susu-${selectedFarmer.name.replace(/\s+/g, '_')}.xlsx` 
             : 'laporan-susu-semua-petugas.xlsx';
@@ -109,7 +109,7 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({ records, farmers }) => {
 
         const doc = new jsPDF();
         
-        const selectedFarmer = farmers.find(f => f.id === parseInt(selectedFarmerId, 10));
+        const selectedFarmer = farmers.find(f => f.id === selectedFarmerId);
         const reportTitle = selectedFarmer 
             ? `Laporan Produksi Susu - ${selectedFarmer.name}`
             : 'Laporan Produksi Susu (Semua Petugas)';
@@ -151,7 +151,7 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({ records, farmers }) => {
         });
 
         const fileName = selectedFarmer 
-            ? `laporan-susu-${selectedFarmer.name.replace(/\s+/g, '_')}.pdf`
+            ? `laporan-susu-${selectedFarmer.name.replace(/\s+/g, '_')}.pdf` 
             : 'laporan-susu-semua-petugas.pdf';
         doc.save(fileName);
     };

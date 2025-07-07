@@ -1,21 +1,21 @@
 
 export interface Farmer {
-  id: number;
+  id: string;
   name: string;
 }
 
 export interface CollectionPost {
-  id: number;
+  id: string;
   name: string;
 }
 
 export interface MilkingRecord {
-  id: number;
-  farmerId: number;
+  id: string;
+  farmerId: string;
   farmerName: string; // Derived from a JOIN with farmers table
   productionDate: string; // Stored as YYYY-MM-DD
   morningYield: number;
   eveningYield: number;
-  collectionPostId?: number | null; // Optional foreign key
+  collectionPostId?: string | null; // Optional foreign key
   collectionPostName?: string | null; // Derived from a LEFT JOIN
 }

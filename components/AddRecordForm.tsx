@@ -31,11 +31,11 @@ const AddRecordForm: React.FC<AddRecordFormProps> = ({ onAddRecord, farmers, col
     
     setError('');
     onAddRecord({
-      farmerId: parseInt(farmerId, 10),
+      farmerId: farmerId,
       productionDate,
       morningYield: morning,
       eveningYield: evening,
-      collectionPostId: collectionPostId ? parseInt(collectionPostId, 10) : null,
+      collectionPostId: collectionPostId ? collectionPostId : null,
     });
     
     setMorningYield('');

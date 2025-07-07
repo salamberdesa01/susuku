@@ -4,7 +4,6 @@ import Header from './components/Header';
 import AddRecordForm from './components/AddRecordForm';
 import RecordTable from './components/RecordTable';
 import SummaryDashboard from './components/SummaryDashboard';
-import MilkChart from './components/MilkChart';
 import ExportButtons from './components/ExportButtons';
 import ManageFarmers from './components/ManageFarmers';
 import ManageCollectionPosts from './components/ManageCollectionPosts';
@@ -22,6 +21,8 @@ const App: React.FC = () => {
 
   const loadData = useCallback(async () => {
     try {
+      // Set loading to false initially if it's a reload, true on first load.
+      // setIsLoading(true) is called in useEffect instead.
       const [recordsData, farmersData, postsData] = await Promise.all([
         db.getRecords(), 
         db.getFarmers(),
@@ -32,6 +33,7 @@ const App: React.FC = () => {
       setCollectionPosts(postsData);
     } catch (error) {
       console.error("Gagal memuat data:", error);
+      // Optionally set an error state to show in the UI
     } finally {
       setIsLoading(false);
     }
@@ -48,7 +50,7 @@ const App: React.FC = () => {
     setMobileView('home'); // Kembali ke home setelah menambah data di mobile
   }, [loadData]);
 
-  const handleDeleteRecord = useCallback(async (id: number) => {
+  const handleDeleteRecord = useCallback(async (id: string) => {
     await db.deleteRecord(id);
     await loadData();
   }, [loadData]);
@@ -71,19 +73,6 @@ const App: React.FC = () => {
     return { totalMilk, totalRecords, averageYield };
   }, [records]);
 
-  const chartData = useMemo(() => {
-    const aggregatedData: { [key: string]: number } = {};
-    records.forEach(record => {
-      const totalYield = record.morningYield + record.eveningYield;
-      if (aggregatedData[record.farmerName]) {
-        aggregatedData[record.farmerName] += totalYield;
-      } else {
-        aggregatedData[record.farmerName] = totalYield;
-      }
-    });
-    return Object.entries(aggregatedData).map(([name, total]) => ({ name, total }));
-  }, [records]);
-
   if (isLoading) {
     return (
       <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center text-slate-200 font-sans">
@@ -91,7 +80,7 @@ const App: React.FC = () => {
           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
-        <p className="text-xl">Mempersiapkan database...</p>
+        <p className="text-xl">Menghubungkan ke database...</p>
       </div>
     );
   }
@@ -121,17 +110,12 @@ const App: React.FC = () => {
               </div>
             </div>
             <div className="lg:col-span-2 bg-slate-800 p-6 rounded-2xl shadow-lg">
-               <h2 className="text-2xl font-bold mb-4 text-cyan-400">Visualisasi Produksi Susu</h2>
-               <MilkChart data={chartData} />
-            </div>
-          </div>
-          
-          <div className="bg-slate-800 p-6 rounded-2xl shadow-lg">
-              <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-4 gap-4">
+               <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-4 gap-4">
                 <h2 className="text-2xl font-bold text-cyan-400">Daftar Catatan Produksi</h2>
                 <ExportButtons records={records} summary={summaryStats} farmers={farmers} />
               </div>
               <RecordTable records={records} onDeleteRecord={handleDeleteRecord} />
+            </div>
           </div>
         </div>
 
@@ -140,10 +124,6 @@ const App: React.FC = () => {
           { mobileView === 'home' && (
             <div className="space-y-8">
               <SummaryDashboard summary={summaryStats} />
-              <div className="bg-slate-800 p-6 rounded-2xl shadow-lg">
-                <h2 className="text-2xl font-bold mb-4 text-cyan-400">Visualisasi Produksi Susu</h2>
-                <MilkChart data={chartData} />
-              </div>
               <div className="bg-slate-800 p-6 rounded-2xl shadow-lg">
                 <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-4 gap-4">
                   <h2 className="text-2xl font-bold text-cyan-400">Daftar Catatan Produksi</h2>
@@ -173,7 +153,7 @@ const App: React.FC = () => {
       </main>
 
       <footer className="text-center p-4 mt-8 text-slate-500 hidden md:block">
-        Dibuat dengan ❤️ M NUR SALIM.
+        Dibuat dengan ❤️ untuk para petugas Indonesia.
       </footer>
       
       <BottomNavigation activeView={mobileView} setActiveView={setMobileView} />

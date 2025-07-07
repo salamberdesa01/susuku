@@ -3,7 +3,7 @@ import { MilkingRecord } from '../types';
 
 interface RecordTableProps {
   records: MilkingRecord[];
-  onDeleteRecord: (id: number) => void;
+  onDeleteRecord: (id: string) => void;
 }
 
 const TrashIcon: React.FC = () => (
